@@ -192,6 +192,23 @@ li button:last-child {
 }
 
 
+.task-manager.light {
+  background: rgb(184, 200, 202);
+  color: black;
+}
+
+.task-manager.dark {
+  background: rgba(90, 67, 96, 0.85);
+  color: white;
+}
+
+.header button {
+  margin: 5px;
+  padding: 6px 12px;
+}
+
+
+
 .task-form-container input::placeholder,
 .task-form-container textarea::placeholder {
   color: white;

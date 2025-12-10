@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import TaskForm from "./TaskForm";
 
-export default function TaskManager({ currentUser, setCurrentUser, theme, toggleTheme }) {
+export default function TaskManager({
+  currentUser,
+  setCurrentUser,
+  theme,
+  toggleTheme
+}) {
   const [tasks, setTasks] = useState(currentUser.tasks || []);
   const [showForm, setShowForm] = useState(false);
   const [editTaskIndex, setEditTaskIndex] = useState(null);
@@ -57,13 +62,19 @@ export default function TaskManager({ currentUser, setCurrentUser, theme, toggle
 
   return (
     <div className={`task-manager ${theme}`}>
+      
+      {/* ✅ HEADER */}
       <div className="header">
         <h2>Task Manager</h2>
         <div>
+          <button onClick={toggleTheme}>
+            {theme === "dark" ? "☀ Light" : "🌙 Dark"}
+          </button>
           <button onClick={logout}>Logout</button>
         </div>
       </div>
 
+      {/* ✅ PENDING TASKS */}
       <h3>Pending Tasks</h3>
       <ul>
         {tasks.map((task, index) => (
@@ -79,6 +90,7 @@ export default function TaskManager({ currentUser, setCurrentUser, theme, toggle
         ))}
       </ul>
 
+      {/* ✅ COMPLETED TASKS */}
       <h3>Completed Tasks</h3>
       <ul>
         {tasks.map((task, index) => (
