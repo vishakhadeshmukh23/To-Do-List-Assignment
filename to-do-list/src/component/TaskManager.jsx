@@ -65,7 +65,7 @@ export default function TaskManager({
       
       {/* ✅ HEADER */}
       <div className="header">
-        <h2>Task Manager</h2>
+        <h2>To-Do-List</h2>
         <div>
           <button onClick={toggleTheme}>
             {theme === "dark" ? "☀ Light" : "🌙 Dark"}
@@ -74,7 +74,6 @@ export default function TaskManager({
         </div>
       </div>
 
-      {/* ✅ PENDING TASKS */}
       <h3>Pending Tasks</h3>
       <ul>
         {tasks.map((task, index) => (
@@ -90,7 +89,6 @@ export default function TaskManager({
         ))}
       </ul>
 
-      {/* ✅ COMPLETED TASKS */}
       <h3>Completed Tasks</h3>
       <ul>
         {tasks.map((task, index) => (

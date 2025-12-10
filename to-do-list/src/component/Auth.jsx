@@ -41,7 +41,7 @@ export default function Auth({ setCurrentUser }) {
     <div className="auth-container">
       
       <h2>
-        {isRegister ? " 📋 Register to To-Do App 📋" : "  📋 Login to To-Do App  📋"}
+        {isRegister ? " 📋 Register " : "  📋 Login "}
       </h2>
 
       <form onSubmit={handleSubmit}>
