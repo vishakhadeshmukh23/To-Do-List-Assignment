@@ -215,36 +215,45 @@ li button {
 }
 
 
+
+
 @media (max-width: 480px) {
 
   body {
-    min-height: 100vh;
+    padding: 10px;
   }
 
-  .auth-container {
-    width: 90%;
+  .auth-container,
+  .task-manager {
+    max-width: 100%;
     margin: 40px auto;
     padding: 25px;
   }
 
-  .auth-container h2 {
-    font-size: 22px;
+  .auth-container h2,
+  .header h2 {
+    font-size: 20px;
+    letter-spacing: 1px;
   }
 
-  .auth-container input {
-    padding: 14px;
+  p {
     font-size: 14px;
   }
 
-  .auth-container button {
-    width: 100%;
+  .auth-container input,
+  .task-form-container input,
+  .task-form-container textarea {
     padding: 12px;
     font-size: 14px;
   }
 
-  .task-manager {
-    width: 90%;
-    padding: 25px;
+  .auth-container button {
+    width: 80%;
+  }
+
+  .task-manager > button {
+    width: 100%;
+    margin-left: 0;
   }
 
   .header {
@@ -252,49 +261,27 @@ li button {
     gap: 10px;
   }
 
-  .header h2 {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .header button {
-    width: 40px;
-    height: 40px;
-  }
-
   li {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 14px;
+    padding: 12px;
+    border-radius: 20px;
   }
 
   li strong {
     font-size: 14px;
-    margin-bottom: 8px;
   }
 
   li button {
-    margin-top: 8px;
-  }
-
-  .task-manager > button {
-    padding: 12px;
-    font-size: 14px;
+    width: 32px;
+    height: 32px;
   }
 
   .task-form-container form {
-    width: 95%;
     padding: 20px;
-  }
-
-  .task-form-container input,
-  .task-form-container textarea {
-    padding: 10px;
-    font-size: 14px;
   }
 
   .task-form-container button {
     width: 100%;
     margin-bottom: 10px;
   }
+
 }
