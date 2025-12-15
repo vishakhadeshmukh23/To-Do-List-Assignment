@@ -20,7 +20,7 @@ export default function Auth({ setCurrentUser }) {
       const newUser = { name, email, password, tasks: [] };
       users.push(newUser);
       localStorage.setItem("users", JSON.stringify(users));
-      localStorage.setItem("currentUser", JSON.stringify(newUser));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));      
       setCurrentUser(newUser);
     } 
     else {

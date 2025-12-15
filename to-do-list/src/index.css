@@ -9,9 +9,10 @@
 
 body {
   min-height: 80vh;
-  background: white;
   color: black; 
 }
+
+
 
 .auth-container {
   max-width: 600px;
@@ -23,7 +24,6 @@ body {
   text-align: center;
   
 }
-
 
 
 .auth-container h2 {
@@ -77,12 +77,34 @@ p{
 }
 
 
+body.light {
+  background: #ffffff;
+  color: #000000;
+}
+
+
+body.dark {
+  background: #000000;
+  color: #ffffff;
+}
+
+.task-manager.light {
+  background: #ffffff;
+  color: #000000;
+}
+
+.task-manager.dark {
+  background: #0f0f0f;
+  color: #ffffff;
+}
+
+
+
 .task-manager {
   max-width: 600px;
   margin: 50px auto;
   padding: 55px;
   border-radius: 20px;
-  background: white;
   box-shadow: 0 0 50px rgba(186, 85, 255, 0.35);
 }
 
@@ -98,11 +120,10 @@ p{
   letter-spacing: 3px;
 }
 
-
 .header button {
   margin-left: 10px;
   padding: 8px 14px;
-  border-radius: 50%;
+  border-radius: 20px;
   border: none;
   background: linear-gradient(135deg, #ff00ff, #8b00ff);
   color: white;
@@ -114,42 +135,66 @@ ul {
 }
 
 li {
-  background: white;
-  padding: 10px 16px;
-  border-radius: 35px;
+  background: inherit;
+  border: 1px solid rgba(200, 200, 200, 0.3);
+  padding: 14px 18px;
+  border-radius: 25px;
   margin-bottom: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #ddd;
+}
+
+li .task-text {
+  max-width: 65%;
 }
 
 li strong {
   font-size: 16px;
+  display: block;
 }
 
 li p {
-  display: none;
+  font-size: 13px;
+  margin-top: 6px;
+  opacity: 0.8;
+  display: block;
 }
 
-li button {
-  border-radius: 50%;
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons button {
   width: 36px;
   height: 36px;
+  border-radius: 50%;
   border: none;
-  background: white;
-  color: white;
   cursor: pointer;
-  margin-left: 6px;
-  box-shadow: 0 0 15px rgba(224, 183, 224, 0.6);
+  background: linear-gradient(135deg, #ff00ff, #8b00ff);
+  color: white;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.6);
+}
+
+.buttons button:hover {
+  transform: scale(1.1);
+}
+
+
+.completed strong,
+.completed p {
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
 
 .task-manager > button {
-  width: 50%;
+  width: 100%;
   margin-top: 30px;
   padding: 14px;
-  margin-left: 120px;
   border-radius: 40px;
   border: none;
   font-size: 16px;
@@ -159,10 +204,11 @@ li button {
   box-shadow: 0 0 25px rgba(255, 0, 255, 0.7);
 }
 
+
 .task-form-container {
   position: fixed;
   inset: 0;
-  background: rgba(219, 213, 221, 0.85);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,7 +220,6 @@ li button {
   width: 90%;
   max-width: 400px;
   border-radius: 20px;
-  box-shadow: 0 0 40px rgba(186, 85, 255, 0.5);
 }
 
 .task-form-container input,
@@ -183,15 +228,7 @@ li button {
   padding: 12px;
   margin-bottom: 15px;
   border-radius: 30px;
-  background: white;
-  color: rgb(29, 25, 25);
-  padding-left: 18px;
-}
-
-
-.task-form-container input::placeholder,
-.task-form-container textarea::placeholder {
-  color: rgb(25, 18, 18);
+  border: 1px solid #ccc;
 }
 
 .task-form-container textarea {
@@ -209,11 +246,27 @@ li button {
   cursor: pointer;
 }
 
-.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
 
+
+@media (max-width: 480px) {
+  .task-manager {
+    padding: 25px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  li .task-text {
+    max-width: 100%;
+  }
+
+  .buttons {
+    align-self: flex-end;
+  }
+}
 
 
 
@@ -285,3 +338,4 @@ li button {
   }
 
 }
+

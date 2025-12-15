@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import TaskForm from "./TaskForm";
 
@@ -10,6 +11,7 @@ export default function TaskManager({
   const [tasks, setTasks] = useState(currentUser.tasks || []);
   const [showForm, setShowForm] = useState(false);
   const [editTaskIndex, setEditTaskIndex] = useState(null);
+  const [view, setView] = useState("pending");
 
   useEffect(() => {
     setCurrentUser(prev => {
@@ -36,6 +38,7 @@ export default function TaskManager({
       setTasks([...tasks, task]);
     }
     setShowForm(false);
+    setView("pending");
   };
 
   const editTask = (index) => {
@@ -47,6 +50,7 @@ export default function TaskManager({
     const updatedTasks = [...tasks];
     updatedTasks[index].completed = true;
     setTasks(updatedTasks);
+    setView("completed");
   };
 
   const deleteTask = (index) => {
@@ -63,47 +67,77 @@ export default function TaskManager({
   return (
     <div className={`task-manager ${theme}`}>
       
-      {/* ✅ HEADER */}
       <div className="header">
         <h2>To-Do-List</h2>
         <div>
           <button onClick={toggleTheme}>
-            {theme === "dark" ? "☀ Light" : "🌙 Dark"}
+            {theme === "dark" ? "🌙 Dark" : "☀ Light"}
           </button>
           <button onClick={logout}>Logout</button>
         </div>
       </div>
 
-      <h3>Pending Tasks</h3>
-      <ul>
-        {tasks.map((task, index) => (
-          !task.completed && (
-            <li key={index}>
-              <strong>{task.title}</strong>
-              <p>{task.desc}</p>
-              <button onClick={() => editTask(index)}>📝</button>
-              <button onClick={() => completeTask(index)}>✅</button>
-              <button onClick={() => deleteTask(index)}>❌</button>
-            </li>
-          )
-        ))}
-      </ul>
+      {view === "pending" && (
+        <>
+          <h3>Pending Tasks</h3>
+          <ul>
+            {tasks.map((task, index) =>
+              !task.completed && (
+                <li key={index}>
+                  
+                 
+                  <div className="task-text">
+                    <strong>{task.title}</strong>
+                    <p>{task.desc}</p>
+                  </div>
 
-      <h3>Completed Tasks</h3>
-      <ul>
-        {tasks.map((task, index) => (
-          task.completed && (
-            <li key={index}>
-              <strong>{task.title}</strong>
-              <p>{task.desc}</p>
-              <button onClick={() => editTask(index)}>📝</button>
-              <button onClick={() => deleteTask(index)}>❌</button>
-            </li>
-          )
-        ))}
-      </ul>
+                
+                  <div className="buttons">
+                    <button onClick={() => editTask(index)}>📝</button>
+                    <button onClick={() => completeTask(index)}>✅</button>
+                    <button onClick={() => deleteTask(index)}>❌</button>
+                  </div>
 
-      <button onClick={() => setShowForm(true)}>+ Add Task</button>
+                </li>
+              )
+            )}
+          </ul>
+        </>
+      )}
+
+      {view === "completed" && (
+        <>
+          <h3>Completed Tasks</h3>
+          <ul>
+            {tasks.map((task, index) =>
+              task.completed && (
+                <li key={index} className="completed">
+                  
+                  <div className="task-text">
+                    <strong>{task.title}</strong>
+                    <p>{task.desc}</p>
+                  </div>
+
+                  <div className="buttons">
+                    <button onClick={() => editTask(index)}>📝</button>
+                    <button onClick={() => deleteTask(index)}>❌</button>
+                  </div>
+
+                </li>
+              )
+            )}
+          </ul>
+        </>
+      )}
+
+      <button
+        onClick={() => {
+          setShowForm(true);
+          setView("pending");
+        }}
+      >
+        + Add Task
+      </button>
 
       {showForm && (
         <TaskForm
@@ -111,6 +145,7 @@ export default function TaskManager({
           cancel={() => {
             setShowForm(false);
             setEditTaskIndex(null);
+            setView("pending");
           }}
           editTask={editTaskIndex !== null ? tasks[editTaskIndex] : null}
           theme={theme}
