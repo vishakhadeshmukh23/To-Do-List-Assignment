@@ -38,9 +38,6 @@ export default function Auth({ setCurrentUser }) {
   };
 
 
-
-  
-
   return (
     <div className="auth-container">
       
